@@ -146,6 +146,10 @@ public class ArrayImpl<E extends Object & Comparable<? super E>> implements Arra
         }
     }
 
+    public void fastSort(){
+        Arrays.sort(Arrays.copyOf(data, size));
+    }
+
     @Override
     public String toString() {
         return Arrays.toString(Arrays.copyOf(data, size));

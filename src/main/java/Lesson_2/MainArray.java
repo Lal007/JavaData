@@ -16,6 +16,7 @@ public class MainArray {
         checkSort(arr, "Bubble");
         checkSort(arr, "Select");
         checkSort(arr, "Insert");
+        checkSort(arr, "fast");
     }
 
     private static int randomNumber() {
@@ -66,11 +67,17 @@ public class MainArray {
 
                         System.out.println("Insert sort ready in " + result + " seconds");
                         break;
+                    case "fast":
+                        System.out.println("Start fast sorting");
+                        start = System.currentTimeMillis();
+                        array.fastSort();
+                        finish = System.currentTimeMillis();
 
+                        result = (finish - start) / 1000.0;
+
+                        System.out.println("Fast sort ready in " + result + " seconds");
+                        break;
                 }
-
-
-
             }
         }).start();
     }
