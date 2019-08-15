@@ -72,4 +72,9 @@ public class TestArray {
     public void testSize(){
         Assertions.assertEquals(10, array.size());
     }
+
+    @Test
+    public void testIsEmpty(){
+        Assertions.assertFalse(array.isEmpty());
+    }
 }
