@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Iterator;
+
 public class testIterator {
 
     LinkedList<Integer> ll;
@@ -28,5 +30,23 @@ public class testIterator {
         }
 
         Assertions.assertEquals("987654321", sb.toString());
+    }
+
+    @Test
+    void testIteratorHasNext(){
+        Iterator <Integer> iter = ll.iterator();
+
+        Assertions.assertFalse(iter.hasNext());
+    }
+
+    @Test
+    void testIterationNext(){
+        ll.insertFirst(1);
+
+        Iterator<Integer> iter = ll.iterator();
+
+        Assertions.assertTrue(iter.hasNext());
+
+        Assertions.assertEquals(1, iter.next());
     }
 }
