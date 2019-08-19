@@ -35,17 +35,24 @@ public class Deck<E> extends QueueImpl<E>{
             return null;
         }
 
-        E value = data[tail];
-        size--;
+        if (tail < 0){
+            tail = data.length - 1;
+        }
 
-        if (isEmpty()){
-            tail = DEFAULT_TAIL;
-            return value;
-        }else if (tail != 0){
-            tail--;
-            return value;
-        }else tail = data.length - 1;
-        return value;
+        size--;
+        return data[tail--];
+
+//        E value = data[tail];
+//        size--;
+//
+//        if (isEmpty()){
+//            tail = DEFAULT_TAIL;
+//            return value;
+//        }else if (tail != 0){
+//            tail--;
+//            return value;
+//        }else tail = data.length - 1;
+//        return value;
     }
 
 }

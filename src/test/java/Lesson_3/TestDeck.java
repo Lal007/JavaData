@@ -51,17 +51,19 @@ public class TestDeck {
 
     @Test
     void testRemoveRight(){
-        for (int i = 1; i < 4; i++) {
-            deck.insertRight(i);
+
+        Deck<Integer> deck2 = new Deck<>(5);
+        for (int i = 1; i < 3; i++) {
+            deck2.insertLeft(i);
         }
 
         StringBuilder sb = new StringBuilder();
 
-        while (!deck.isEmpty()){
-            sb.append(deck.removeRight());
+        while (!deck2.isEmpty()){
+            sb.append(deck2.removeRight());
         }
 
-        Assertions.assertEquals("32100", sb.toString());
+        Assertions.assertEquals("12", sb.toString());
     }
 
     @Test
