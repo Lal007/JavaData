@@ -4,8 +4,8 @@ public class Node<T extends Comparable<? super T>> {
 
     private final T value;
 
-    private Node<T> leftChild;
-    private Node<T> rightChild;
+    public Node<T> leftChild;
+    public Node<T> rightChild;
 
     public Node(T value) {
         this.value = value;
