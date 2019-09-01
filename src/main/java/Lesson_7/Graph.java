@@ -194,7 +194,7 @@ public class Graph {
                 nextVertex.setPrevious(curVertex);
                 if (nextVertex.getLabel().equals(toFindLabel)){
                     ArrayList<Vertex> result = prepareResult(nextVertex);
-                    resetVertexState();
+                    resetVertexState(); // Добавил обнуление ссылки на предыдущий элемент
                     return result;
                 }
                 checkVertex(queue, nextVertex);
