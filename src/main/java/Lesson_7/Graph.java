@@ -98,6 +98,7 @@ public class Graph {
     private void resetVertexState() {
         for (Vertex vertex : vertexList) {
             vertex.setVisited(false);
+            vertex.setPrevious(null);
         }
     }
 
@@ -177,5 +178,52 @@ public class Graph {
         return null;
     }
 
+    public ArrayList<Vertex> bfsearch(String startLabel, String toFindLabel) {
+        int startIndex = indexOf(startLabel);
+        if (startIndex == -1) {
+            throw new IllegalArgumentException("Invalid startLabel: " + startLabel);
+        }
 
+        Queue<Vertex> queue = new ArrayDeque<>();
+        Vertex curVertex = vertexList.get(startIndex);
+        checkVertex(queue, curVertex);
+
+        while (!queue.isEmpty()) {
+            Vertex nextVertex = getNearUnvisitedVertex(queue.peek());
+            if (nextVertex != null) {
+                nextVertex.setPrevious(curVertex);
+                if (nextVertex.getLabel().equals(toFindLabel)){
+                    ArrayList<Vertex> result = prepareResult(nextVertex);
+                    resetVertexState();
+                    return result;
+                }
+                checkVertex(queue, nextVertex);
+            } else {
+                queue.remove();
+                curVertex = queue.peek();
+            }
+        }
+
+        resetVertexState();
+        return null;
+    }
+
+    private ArrayList<Vertex> prepareResult(Vertex vertex) {
+        ArrayList<Vertex> result = new ArrayList<>();
+        result.add(vertex);
+        Vertex nextVertex = vertex.getPrevious();
+        while (nextVertex != null){
+            result.add(nextVertex);
+            nextVertex = nextVertex.getPrevious();
+        }
+
+        Collections.reverse(result);
+        return result;
+    }
+
+    private void checkVertex(Queue<Vertex> queue, Vertex vertex) {
+//        System.out.println(vertex.getLabel());
+        queue.add(vertex);
+        vertex.setVisited(true);
+    }
 }
